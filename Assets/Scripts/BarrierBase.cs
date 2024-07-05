@@ -9,11 +9,17 @@ public class BarrierBase : MonoBehaviour
 
     public Barrier1 barrier;
 
-    public float Speed = 2.5f;
-    public float maxX = 5.6f;
+
+    private float Speed = 2.5f;
 
     [SerializeField]
-    private float resetPositionX = -4f;
+    private float maxX;
+
+    [SerializeField]
+    private float resetPositionX;
+
+    
+   // public  bool RightDirection = true;
 
     public void Start()
     {
@@ -32,15 +38,37 @@ public class BarrierBase : MonoBehaviour
     }
 
     void moving()
-    {
-        transform.Translate(Vector3.down * Speed * Time.deltaTime);
+    {    
+        if (barrier.RightDirection)
+        {
+            transform.Translate(Vector3.down * Speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.Translate(Vector3.up * Speed * Time.deltaTime);
+        }
     }
 
     void CheckPositionAndSwitchLocation()
     {
-        if (transform.position.x > maxX)
+        if (barrier.RightDirection)
         {
-            transform.position = new Vector3(resetPositionX, transform.position.y, transform.position.z);
+            maxX = 6.5f;
+            resetPositionX = -5.3f;
+            if (transform.position.x > maxX)
+            {
+                transform.position = new Vector3(resetPositionX, transform.position.y, transform.position.z);
+            }
         }
+        else
+        {
+            maxX = -5.8f;
+            resetPositionX = 6f;
+            if (transform.position.x < maxX)
+            {
+                transform.position = new Vector3(resetPositionX, transform.position.y, transform.position.z);
+            }
+        }
+       
     }
 }

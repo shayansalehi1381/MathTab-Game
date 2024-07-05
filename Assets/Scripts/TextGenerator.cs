@@ -55,6 +55,10 @@ public class TextGenerator : MonoBehaviour
 
         // Get a unique random number from the list
         int uniqueRandomNumber = uniqueNumbers[currentIndex];
+        if (currentIndex > 3)
+        {
+            currentIndex = 0;
+        }
         currentIndex++;
 
         // Create the final string

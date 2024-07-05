@@ -92,6 +92,7 @@ public class Ball : MonoBehaviour
             {
                 if (barrierBasee.barrier.ballCollided <= 1)
                 {
+                    Debug.Log("Colideddddddddddd");
                     string barrierText = barrierBasee.text.text;
                     mathOperation(barrierText);
                 }
