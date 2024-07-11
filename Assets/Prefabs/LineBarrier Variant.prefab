@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1683628389491405485, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: Speed
-      value: 2.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1683628389491405485, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: barrier
@@ -34,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1683628389704541655, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: Speed
-      value: 2.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1683628389704541655, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: barrier
@@ -70,7 +70,7 @@ PrefabInstance:
       objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 1683628391032360778, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: Speed
-      value: 2.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1683628391032360778, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: barrier
@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1683628391176943751, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: Speed
-      value: 2.5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1683628391176943751, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: barrier
@@ -110,7 +110,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8262082016042210854, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8262082016042210854, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: m_LocalPosition.x
@@ -154,7 +154,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8262082016042211033, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: m_Name
-      value: LineBarrier
+      value: LineBarrier Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8262082016042211033, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: m_TagString

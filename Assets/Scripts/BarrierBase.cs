@@ -9,7 +9,7 @@ public class BarrierBase : MonoBehaviour
 
     public Barrier1 barrier;
 
-
+    [SerializeField]
     private float Speed = 2.5f;
 
     [SerializeField]

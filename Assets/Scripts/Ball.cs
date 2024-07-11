@@ -11,11 +11,7 @@ public class Ball : MonoBehaviour
     public float jumpSpeed = 15;
     private bool ballAlive = true;
     private Camera mainCamera;
-
     private BarrierBase barrierBasee;
-
-
-
 
     public void Start()
     {
@@ -30,14 +26,10 @@ public class Ball : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 Jump();
+                //  SoundManager.instance.PlaySoundEffect();
             }
 
             if (!IsBallInCameraView())
-            {
-                Die();
-            }
-
-            if (Score.score <= 0)
             {
                 Die();
             }
@@ -68,14 +60,12 @@ public class Ball : MonoBehaviour
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
         ballAlive = false;
-        gameObject.SetActive(false); // Hide the ball when it dies
-      
+        gameObject.SetActive(false);
     }
 
     private void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -87,12 +77,11 @@ public class Ball : MonoBehaviour
         else if (other.gameObject.CompareTag("Barrier"))
         {
             barrierBasee = other.GetComponent<BarrierBase>();
-            barrierBasee.barrier.ballCollided ++;
+            barrierBasee.barrier.ballCollided++;
             if (barrierBasee != null)
             {
                 if (barrierBasee.barrier.ballCollided <= 1)
                 {
-                    Debug.Log("Colideddddddddddd");
                     string barrierText = barrierBasee.text.text;
                     mathOperation(barrierText);
                 }
@@ -107,10 +96,16 @@ public class Ball : MonoBehaviour
 
     public void mathOperation(string barrierText)
     {
-        // Parse the operation and number
         char operation = barrierText[0];
+        string numberPart = barrierText.Substring(1);
+
+        if (numberPart.StartsWith("(") && numberPart.EndsWith(")"))
+        {
+            numberPart = numberPart.Substring(1, numberPart.Length - 2);
+        }
+
         int number;
-        if (int.TryParse(barrierText.Substring(1), out number))
+        if (int.TryParse(numberPart, out number))
         {
             switch (operation)
             {
@@ -138,8 +133,9 @@ public class Ball : MonoBehaviour
                     break;
             }
         }
+        else
+        {
+            Debug.Log("Invalid number format: " + numberPart);
+        }
     }
-    
-
-    
 }

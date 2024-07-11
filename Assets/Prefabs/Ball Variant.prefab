@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 272426472}
     - target: {fileID: 2441145375462727682, guid: 4269dd363e9d56b4db1e944b831894cd, type: 3}
       propertyPath: jumpSpeed
-      value: 7
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 2441145375462727683, guid: 4269dd363e9d56b4db1e944b831894cd, type: 3}
       propertyPath: m_Color.b
@@ -98,7 +98,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2441145375462727807, guid: 4269dd363e9d56b4db1e944b831894cd, type: 3}
       propertyPath: m_Name
-      value: Ball
+      value: Ball Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3250490415302066517, guid: 4269dd363e9d56b4db1e944b831894cd, type: 3}
       propertyPath: m_AnchoredPosition.x
