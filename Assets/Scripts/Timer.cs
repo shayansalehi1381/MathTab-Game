@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour
 {
     public Text timerText;
-    public float timeRemaining = 5f;
+    public float timeRemaining = 10f;
     private bool timerRunning = true;
     public Ball ballScript; // Reference to the Ball script
 
@@ -81,7 +81,7 @@ public class Timer : MonoBehaviour
 
     void ResetTimerAndRange()
     {
-        timeRemaining = 5f;
+        timeRemaining = 10f;
         timerRunning = true;
         ResetRange();
     }

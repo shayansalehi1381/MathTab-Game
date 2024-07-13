@@ -12,11 +12,15 @@ public class Ball : MonoBehaviour
     private bool ballAlive = true;
     private Camera mainCamera;
     private BarrierBase barrierBasee;
+    private Bomb bomb;
+    [SerializeField]
+    private AudioSource audioSource; // Reference to the AudioSource
 
     public void Start()
     {
         rb.isKinematic = true;
         mainCamera = Camera.main;
+        audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
     }
 
     public void Update()
@@ -26,7 +30,6 @@ public class Ball : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 Jump();
-                //  SoundManager.instance.PlaySoundEffect();
             }
 
             if (!IsBallInCameraView())
@@ -47,6 +50,7 @@ public class Ball : MonoBehaviour
     {
         rb.isKinematic = false;
         rb.velocity = Vector2.up * jumpSpeed;
+        audioSource.Play();
     }
 
     private bool IsBallInCameraView()
@@ -86,6 +90,10 @@ public class Ball : MonoBehaviour
                     mathOperation(barrierText);
                 }
             }
+        }
+        else if (other.gameObject.CompareTag("Bomb"))
+        {
+            Die();
         }
     }
 

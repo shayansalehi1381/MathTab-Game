@@ -5,8 +5,11 @@ using UnityEngine.UI;
 
 public class RangeGenerator : MonoBehaviour
 {
-    public int overallMin = -1000;
-    public int overallMax = 2000;
+
+    [SerializeField]
+    private int overallMin = -1000;
+    [SerializeField]
+    private int overallMax = 2000;
     public Text displayText;
 
     void Start()
@@ -26,8 +29,8 @@ public class RangeGenerator : MonoBehaviour
 
     public (int, int) GenerateRandomRange()
     {
-        int minRangeLength = 500;
-        int maxRangeLength = 1000;
+        int minRangeLength = 50;
+        int maxRangeLength = 200;
 
         // Randomly determine the length of the range
         int rangeLength = Random.Range(minRangeLength, maxRangeLength + 1);
