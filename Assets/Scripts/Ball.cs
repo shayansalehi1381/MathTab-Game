@@ -1,6 +1,7 @@
+using Newtonsoft.Json;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,25 +10,32 @@ public class Ball : MonoBehaviour
 {
     public Rigidbody2D rb;
     public float jumpSpeed = 15;
-    private bool ballAlive = true;
+    public bool ballAlive = true;
     private Camera mainCamera;
     private BarrierBase barrierBasee;
+    private Barrier1 LineBarrier;
     private Bomb bomb;
+    public int points = 0;
+
+    public SoundManager soundManager; 
+    public SoundManager secSoundManager;
+    public GameOver gameOverScreenPrefab;
     [SerializeField]
-    private AudioSource audioSource; // Reference to the AudioSource
+    private BallAnimation ballAnimation;
 
     public void Start()
     {
         rb.isKinematic = true;
         mainCamera = Camera.main;
-        audioSource = GetComponent<AudioSource>(); // Get the AudioSource component
+        soundManager = FindObjectOfType<SoundManager>(); // Find the SoundManager in the scene
+        secSoundManager = FindObjectOfType<SoundManager>();
     }
 
     public void Update()
     {
         if (ballAlive)
         {
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetKeyDown(KeyCode.J))
             {
                 Jump();
             }
@@ -37,20 +45,24 @@ public class Ball : MonoBehaviour
                 Die();
             }
         }
-        else
-        {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                RestartGame();
-            }
-        }
+    }
+
+
+    private void ShowGameOverScreen()
+    {
+        Vector3 position = mainCamera.transform.position;
+        position.z += 10;
+        position.y += 2.7f;
+        position.x += 0.16f;
+        GameOver gameOverInstance = Instantiate(gameOverScreenPrefab,position, Quaternion.identity);
+        gameOverInstance.Setup(points);
     }
 
     void Jump()
     {
         rb.isKinematic = false;
         rb.velocity = Vector2.up * jumpSpeed;
-        audioSource.Play();
+        soundManager.PlaySound("JumpSound"); // Play the jump sound
     }
 
     private bool IsBallInCameraView()
@@ -60,17 +72,23 @@ public class Ball : MonoBehaviour
     }
 
     public void Die()
-    {
+    { 
+        ballAnimation.PlayAnimation("BallDeath");
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
         ballAlive = false;
+        soundManager.PlaySound("DeathSound"); // Play the death sound
+        StartCoroutine(DelayedActions()); // Start the coroutine
+    }
+
+    private IEnumerator DelayedActions()
+    {
+        yield return new WaitForSeconds(0.5f); // Wait for 1 second
+        ShowGameOverScreen();
         gameObject.SetActive(false);
     }
 
-    private void RestartGame()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -78,18 +96,15 @@ public class Ball : MonoBehaviour
         {
             Die();
         }
+        else if (other.gameObject.CompareTag("LineBarrier"))
+        {
+            LineBarrier = other.GetComponent<Barrier1>();
+            CalculateScores(LineBarrier);
+        }
         else if (other.gameObject.CompareTag("Barrier"))
         {
-            barrierBasee = other.GetComponent<BarrierBase>();
-            barrierBasee.barrier.ballCollided++;
-            if (barrierBasee != null)
-            {
-                if (barrierBasee.barrier.ballCollided <= 1)
-                {
-                    string barrierText = barrierBasee.text.text;
-                    mathOperation(barrierText);
-                }
-            }
+            BarrierBase barrierBase = other.GetComponent<BarrierBase>();
+            LineBarrier.CompareAnswers(this, barrierBase);
         }
         else if (other.gameObject.CompareTag("Bomb"))
         {
@@ -102,8 +117,13 @@ public class Ball : MonoBehaviour
         return ballAlive;
     }
 
-    public void mathOperation(string barrierText)
+    public void OperationToCompareAnswers(string barrierText)
     {
+        int firstAnswer = Score.score;
+        int secondAnswer = Score.score;
+        int thirdAnswer = Score.score;
+        int fourthAnswer = Score.score;
+
         char operation = barrierText[0];
         string numberPart = barrierText.Substring(1);
 
@@ -117,33 +137,66 @@ public class Ball : MonoBehaviour
         {
             switch (operation)
             {
-                case '*':
-                    Score.score *= number;
-                    barrierBasee.barrier.clearAllText();
+                case '×':
+                    firstAnswer *= number;
+                    barrierBasee.barrier.scores.Add(firstAnswer);
+
                     break;
-                case '/':
+                case '÷':
                     if (number != 0)
                     {
-                        Score.score /= number;
-                        barrierBasee.barrier.clearAllText();
+                        secondAnswer /= number;
+                        barrierBasee.barrier.scores.Add(secondAnswer);
+
                     }
                     break;
                 case '+':
-                    Score.score += number;
-                    barrierBasee.barrier.clearAllText();
+                    thirdAnswer += number;
+                    barrierBasee.barrier.scores.Add(thirdAnswer);
+
                     break;
                 case '-':
-                    Score.score -= number;
-                    barrierBasee.barrier.clearAllText();
+                    fourthAnswer -= number;
+                    barrierBasee.barrier.scores.Add(fourthAnswer);
+
                     break;
                 default:
-                    Debug.Log("Unknown operation: " + operation);
                     break;
             }
         }
-        else
+    }
+
+    private void CalculateScores(Barrier1 lineBarrier)
+    {
+        lineBarrier.scores.Clear(); // Clear any existing scores before recalculating
+
+        foreach (var barrierBase in lineBarrier.barrierBases)
         {
-            Debug.Log("Invalid number format: " + numberPart);
+            string barrierText = barrierBase.mathString;
+            if (!string.IsNullOrEmpty(barrierText))
+            {
+                int score = CalculateScoreFromOperation(barrierBase);
+                lineBarrier.scores.Add(score);
+            }
         }
+    }
+
+    public int CalculateScoreFromOperation(BarrierBase barrierBase)
+    {
+        string barrierText = barrierBase.mathString;
+        char operation = barrierText[0];
+        string numberPart = barrierText.Substring(1);
+        int number;
+        if (int.TryParse(numberPart, out number))
+        {
+            switch (operation)
+            {
+                case '×': return Score.score * number;
+                case '÷': return number != 0 ? Score.score / number : Score.score;
+                case '+': return Score.score + number;
+                case '-': return Score.score - number;
+            }
+        }
+        return Score.score;
     }
 }

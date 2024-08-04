@@ -5,12 +5,13 @@ using UnityEngine.UI;
 
 public class BarrierBase : MonoBehaviour
 {
-    public Text text;
-
+    public Text UItext;
+    public string mathString;
     public Barrier1 barrier;
+    public int answer;
 
     [SerializeField]
-    private float Speed = 2.5f;
+    public float Speed;
 
     [SerializeField]
     private float maxX;
@@ -18,12 +19,10 @@ public class BarrierBase : MonoBehaviour
     [SerializeField]
     private float resetPositionX;
 
-    
-   // public  bool RightDirection = true;
-
     public void Start()
     {
         barrier.barrierBases.Add(this);
+        Speed = BarrierSpawner.speedForBarrierBase;
     }
 
     void Update()
@@ -32,13 +31,14 @@ public class BarrierBase : MonoBehaviour
         CheckPositionAndSwitchLocation();
     }
 
-    public void SetText(string newText)
+    public void SetUIText(string newText)
     {
-        text.text = newText;
+        UItext.text = newText;
+        
     }
 
     void moving()
-    {    
+    {
         if (barrier.RightDirection)
         {
             transform.Translate(Vector3.down * Speed * Time.deltaTime);
@@ -69,6 +69,5 @@ public class BarrierBase : MonoBehaviour
                 transform.position = new Vector3(resetPositionX, transform.position.y, transform.position.z);
             }
         }
-       
     }
 }

@@ -7,6 +7,8 @@ TagManager:
   - Ball
   - BottomBoundary
   - Barrier
+  - Bomb
+  - LineBarrier
   layers:
   - Default
   - TransparentFX
@@ -44,9 +46,15 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Ball
-    uniqueID: 3732943961
+  - name: BackGround
+    uniqueID: 2355570319
     locked: 0
   - name: Barrier
     uniqueID: 3841711521
+    locked: 0
+  - name: Ball
+    uniqueID: 3732943961
+    locked: 0
+  - name: GameOverScreen
+    uniqueID: 1276268613
     locked: 0

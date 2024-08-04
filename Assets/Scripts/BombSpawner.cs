@@ -12,12 +12,20 @@ public class BombSpawner : MonoBehaviour
     private float xSpeed = 2f; // Fixed x speed
     [SerializeField]
     private Vector2 ySpeedRange = new Vector2(2f, 8f); // Range of y speeds
+    [SerializeField]
+    private float moveSpeed = 2f; // Speed of vertical movement
+    [SerializeField]
+    private float moveDistance = 2f; // Distance to move up and down
+
+    private Vector3 startPosition;
 
     private void Start()
     {
+        startPosition = transform.position;
         StartCoroutine(SpawnBombs());
     }
 
+    
     private IEnumerator SpawnBombs()
     {
         while (true)

@@ -8,6 +8,8 @@ public class BarrierSpawner : MonoBehaviour
     public GameObject LineBarrier;
     public float spawnRate = 5;
     private float timer = 0;
+    [SerializeField]
+    public static float speedForBarrierBase = 4;
 
     private float lastYPosition = 0; // Track the y position of the last spawned LineBarrier
     public float yOffset = 10; // Distance between each LineBarrier in y-axis
@@ -36,5 +38,10 @@ public class BarrierSpawner : MonoBehaviour
         lastYPosition += yOffset;
 
         Instantiate(LineBarrier, new Vector3(transform.position.x, lastYPosition, 0), transform.rotation);
+    }
+
+    public static void IncreaseSpeed(float increment)
+    {
+        speedForBarrierBase += increment;
     }
 }

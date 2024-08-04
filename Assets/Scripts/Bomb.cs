@@ -12,6 +12,8 @@ public class Bomb : MonoBehaviour
     private AudioClip explosionSound; // Reference to the explosion sound
     [SerializeField]
     private float lifeTime = 5f; // Lifetime of the bomb
+    [SerializeField]
+    private float rotationSpeed = 50f;
 
     private AudioSource audioSource;
     private bool hasExploded = false;
@@ -34,6 +36,12 @@ public class Bomb : MonoBehaviour
 
         // Start the coroutine to destroy the bomb after its lifetime
         StartCoroutine(DestroyAfterDelay());
+    }
+
+    private void Update()
+    {
+        // Rotate the bomb around its Z-axis continuously
+        transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
     }
 
     private IEnumerator DestroyAfterDelay()

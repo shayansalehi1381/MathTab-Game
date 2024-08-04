@@ -7,54 +7,75 @@ public class TextGenerator : MonoBehaviour
 {
     public BarrierBase barrierBase;
 
+    [SerializeField]
+    private int firstNumber = -20;
+    [SerializeField]
+    private int secondNumber = 31;
+    [SerializeField]
+    private int thirdNumber = -200;
+    [SerializeField]
+    private int fourthNumber = 200;
+
     private void Start()
     {
         string generatedText = GenerateRandomOperationString();
+       
 
         if (barrierBase != null)
-        {
-            barrierBase.SetText(generatedText);
+        { 
+            barrierBase.SetUIText(generatedText);
+            barrierBase.mathString = generatedText;
         }
+
     }
 
     string GenerateRandomOperationString()
     {
-        // Define the range of the numbers
-        int min = -10;
-        int max = 10;
-
-        // Generate a random number within the range
-        int randomNumber = Random.Range(min, max + 1);
-
-        // Define the operations
-        string[] operations = { "+", "*", "/" };
-
-        // Generate a random operation
+        string[] operations = { "+", "-", "×", "÷" };
         string operation = operations[Random.Range(0, operations.Length)];
 
-        // Create the operation string based on the number being positive or negative
-        string operationString;
-        if (randomNumber < 0)
+        int randomNumber;
+
+        if (operation == "×" || operation == "÷")
         {
-            if (operation == "+")
-            {
-                operationString = randomNumber.ToString(); // Just the negative number
-            }
-            else
-            {
-                operationString = operation + "(" + randomNumber.ToString() + ")"; // Operation with parentheses
-            }
-        }
-        else if (randomNumber > 0)
-        {
-            operationString = operation + randomNumber.ToString(); // Operation with positive number
+            randomNumber = Random.Range(firstNumber, secondNumber); // Range for × and ÷
         }
         else
         {
-            // Handle the case where the number is zero, if necessary
-            operationString = operation + "0";
+            randomNumber = Random.Range(thirdNumber, fourthNumber); // Range for + and -
+        }
+
+        if (operation == "÷" && randomNumber == 0)
+        {
+            randomNumber = 1; // Avoid division by zero
+        }
+
+        string numberString = randomNumber.ToString();
+
+        // Add parentheses for negative numbers in multiplication and division
+        if ((operation == "×" || operation == "÷") && randomNumber < 0)
+        {
+            numberString = $"({randomNumber})";
+        }
+
+        string operationString = operation + numberString;
+
+        // Handle special cases
+        if (operationString.Contains("+-"))
+        {
+            operationString = operationString.Replace("+-", "-");
+        }
+        else if (operationString.Contains("-+"))
+        {
+            operationString = operationString.Replace("-+", "-");
+        }
+        else if (operationString.Contains("--"))
+        {
+            operationString = operationString.Replace("--", "+");
         }
 
         return operationString;
     }
+
+
 }
