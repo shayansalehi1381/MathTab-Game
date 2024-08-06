@@ -8,7 +8,6 @@ public class BarrierBase : MonoBehaviour
     public Text UItext;
     public string mathString;
     public Barrier1 barrier;
-    public int answer;
 
     [SerializeField]
     public float Speed;
@@ -34,7 +33,7 @@ public class BarrierBase : MonoBehaviour
     public void SetUIText(string newText)
     {
         UItext.text = newText;
-        
+        mathString = newText;
     }
 
     void moving()

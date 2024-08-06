@@ -39,9 +39,4 @@ public class BarrierSpawner : MonoBehaviour
 
         Instantiate(LineBarrier, new Vector3(transform.position.x, lastYPosition, 0), transform.rotation);
     }
-
-    public static void IncreaseSpeed(float increment)
-    {
-        speedForBarrierBase += increment;
-    }
 }

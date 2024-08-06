@@ -20,13 +20,5 @@ public class Score : MonoBehaviour
         if (score > 1000) { 
         score = 1;
         }
-        else if (score < -1000) {
-            score = -1;
-        }
-    }
-
-    public void ClearText()
-    {
-        text.text = "";
     }
 }

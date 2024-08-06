@@ -17,7 +17,7 @@ public class Ball : MonoBehaviour
     private Bomb bomb;
     public int points = 0;
 
-    public SoundManager soundManager; 
+    public SoundManager soundManager;
     public SoundManager secSoundManager;
     public GameOver gameOverScreenPrefab;
     [SerializeField]
@@ -54,7 +54,7 @@ public class Ball : MonoBehaviour
         position.z += 10;
         position.y += 2.7f;
         position.x += 0.16f;
-        GameOver gameOverInstance = Instantiate(gameOverScreenPrefab,position, Quaternion.identity);
+        GameOver gameOverInstance = Instantiate(gameOverScreenPrefab, position, Quaternion.identity);
         gameOverInstance.Setup(points);
     }
 
@@ -72,7 +72,7 @@ public class Ball : MonoBehaviour
     }
 
     public void Die()
-    { 
+    {
         ballAnimation.PlayAnimation("BallDeath");
         rb.velocity = Vector2.zero;
         rb.isKinematic = true;
@@ -88,23 +88,17 @@ public class Ball : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.name == "BottomBoundary")
         {
             Die();
         }
-        else if (other.gameObject.CompareTag("LineBarrier"))
-        {
-            LineBarrier = other.GetComponent<Barrier1>();
-            CalculateScores(LineBarrier);
-        }
         else if (other.gameObject.CompareTag("Barrier"))
         {
             BarrierBase barrierBase = other.GetComponent<BarrierBase>();
-            LineBarrier.CompareAnswers(this, barrierBase);
+            ApplyBarrierOperation(barrierBase.mathString);
+            barrierBase.barrier.clearAllText();
         }
         else if (other.gameObject.CompareTag("Bomb"))
         {
@@ -112,20 +106,10 @@ public class Ball : MonoBehaviour
         }
     }
 
-    public bool IsBallAlive()
+    private void ApplyBarrierOperation(string operationString)
     {
-        return ballAlive;
-    }
-
-    public void OperationToCompareAnswers(string barrierText)
-    {
-        int firstAnswer = Score.score;
-        int secondAnswer = Score.score;
-        int thirdAnswer = Score.score;
-        int fourthAnswer = Score.score;
-
-        char operation = barrierText[0];
-        string numberPart = barrierText.Substring(1);
+        char operation = operationString[0];
+        string numberPart = operationString.Substring(1);
 
         if (numberPart.StartsWith("(") && numberPart.EndsWith(")"))
         {
@@ -138,65 +122,37 @@ public class Ball : MonoBehaviour
             switch (operation)
             {
                 case '×':
-                    firstAnswer *= number;
-                    barrierBasee.barrier.scores.Add(firstAnswer);
-
+                    Score.score *= number;
+                    points += 100;
                     break;
                 case '÷':
                     if (number != 0)
                     {
-                        secondAnswer /= number;
-                        barrierBasee.barrier.scores.Add(secondAnswer);
-
+                        Score.score /= number;
+                        points += 100;
                     }
                     break;
                 case '+':
-                    thirdAnswer += number;
-                    barrierBasee.barrier.scores.Add(thirdAnswer);
-
+                    Score.score += number;
+                    points += 100;
                     break;
                 case '-':
-                    fourthAnswer -= number;
-                    barrierBasee.barrier.scores.Add(fourthAnswer);
-
+                    Score.score -= number;
+                    points += 100;
                     break;
                 default:
                     break;
             }
-        }
-    }
 
-    private void CalculateScores(Barrier1 lineBarrier)
-    {
-        lineBarrier.scores.Clear(); // Clear any existing scores before recalculating
-
-        foreach (var barrierBase in lineBarrier.barrierBases)
-        {
-            string barrierText = barrierBase.mathString;
-            if (!string.IsNullOrEmpty(barrierText))
+            if (Score.score < 1)
             {
-                int score = CalculateScoreFromOperation(barrierBase);
-                lineBarrier.scores.Add(score);
+                Die();
             }
         }
     }
 
-    public int CalculateScoreFromOperation(BarrierBase barrierBase)
+    public bool IsBallAlive()
     {
-        string barrierText = barrierBase.mathString;
-        char operation = barrierText[0];
-        string numberPart = barrierText.Substring(1);
-        int number;
-        if (int.TryParse(numberPart, out number))
-        {
-            switch (operation)
-            {
-                case '×': return Score.score * number;
-                case '÷': return number != 0 ? Score.score / number : Score.score;
-                case '+': return Score.score + number;
-                case '-': return Score.score - number;
-            }
-        }
-        return Score.score;
+        return ballAlive;
     }
 }
