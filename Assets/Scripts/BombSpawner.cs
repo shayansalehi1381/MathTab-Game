@@ -18,14 +18,32 @@ public class BombSpawner : MonoBehaviour
     private float moveDistance = 2f; // Distance to move up and down
 
     private Vector3 startPosition;
+    private Coroutine spawnCoroutine;
+    [SerializeField]
+    private int ID;
 
     private void Start()
     {
         startPosition = transform.position;
-        StartCoroutine(SpawnBombs());
     }
 
-    
+    public void StartSpawning()
+    {
+        if (spawnCoroutine == null)
+        {
+            spawnCoroutine = StartCoroutine(SpawnBombs());
+        }
+    }
+
+    public void StopSpawning()
+    {
+        if (spawnCoroutine != null)
+        {
+            StopCoroutine(spawnCoroutine);
+            spawnCoroutine = null;
+        }
+    }
+
     private IEnumerator SpawnBombs()
     {
         while (true)

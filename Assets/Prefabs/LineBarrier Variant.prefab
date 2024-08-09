@@ -9,6 +9,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1683628389466443722, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
+      propertyPath: barrier
+      value: 
+      objectReference: {fileID: 701083207}
+    - target: {fileID: 1683628389466443722, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: plusSprite
       value: 
       objectReference: {fileID: 21300000, guid: 01939878c4d09fe46838da352f58ab84, type: 3}
@@ -18,11 +22,11 @@ PrefabInstance:
       objectReference: {fileID: 3069978553939533595}
     - target: {fileID: 1683628389466443722, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: firstNumber
-      value: -20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1683628389466443722, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: thirdNumber
-      value: -200
+      value: -600
       objectReference: {fileID: 0}
     - target: {fileID: 1683628389466443722, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: divideSprite
@@ -30,7 +34,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1683628389466443722, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: fourthNumber
-      value: 200
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 1683628389466443722, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: multiplySprite
@@ -52,6 +56,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 1000a5f5705ec09469ed069270c2859f, type: 3}
+    - target: {fileID: 1683628389466443727, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 1683628389466443727, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: m_FontData.m_FontStyle
       value: 0
@@ -117,6 +125,10 @@ PrefabInstance:
       value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 1683628389746268336, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
+      propertyPath: barrier
+      value: 
+      objectReference: {fileID: 701083207}
+    - target: {fileID: 1683628389746268336, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: plusSprite
       value: 
       objectReference: {fileID: 21300000, guid: 01939878c4d09fe46838da352f58ab84, type: 3}
@@ -126,11 +138,11 @@ PrefabInstance:
       objectReference: {fileID: 1269614282061314456}
     - target: {fileID: 1683628389746268336, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: firstNumber
-      value: -20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1683628389746268336, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: thirdNumber
-      value: -200
+      value: -600
       objectReference: {fileID: 0}
     - target: {fileID: 1683628389746268336, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: divideSprite
@@ -138,7 +150,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 54f8507f5207ce24eac60f616d07e6f5, type: 3}
     - target: {fileID: 1683628389746268336, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: fourthNumber
-      value: 200
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 1683628389746268336, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: multiplySprite
@@ -161,6 +173,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12800000, guid: 1000a5f5705ec09469ed069270c2859f, type: 3}
     - target: {fileID: 1683628389746268341, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683628389746268341, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: m_FontData.m_FontStyle
       value: 0
       objectReference: {fileID: 0}
@@ -173,6 +189,10 @@ PrefabInstance:
       value: -453255775
       objectReference: {fileID: 0}
     - target: {fileID: 1683628391000032736, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
+      propertyPath: barrier
+      value: 
+      objectReference: {fileID: 701083207}
+    - target: {fileID: 1683628391000032736, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: plusSprite
       value: 
       objectReference: {fileID: 21300000, guid: 01939878c4d09fe46838da352f58ab84, type: 3}
@@ -182,11 +202,11 @@ PrefabInstance:
       objectReference: {fileID: 3097075584777466454}
     - target: {fileID: 1683628391000032736, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: firstNumber
-      value: -20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1683628391000032736, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: thirdNumber
-      value: -200
+      value: -600
       objectReference: {fileID: 0}
     - target: {fileID: 1683628391000032736, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: divideSprite
@@ -194,7 +214,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 54f8507f5207ce24eac60f616d07e6f5, type: 3}
     - target: {fileID: 1683628391000032736, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: fourthNumber
-      value: 200
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 1683628391000032736, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: multiplySprite
@@ -216,6 +236,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: 1000a5f5705ec09469ed069270c2859f, type: 3}
+    - target: {fileID: 1683628391000032741, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 1683628391000032741, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: m_FontData.m_FontStyle
       value: 0
@@ -277,6 +301,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12800000, guid: 1000a5f5705ec09469ed069270c2859f, type: 3}
     - target: {fileID: 1683628391140684328, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 70
+      objectReference: {fileID: 0}
+    - target: {fileID: 1683628391140684328, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: m_FontData.m_FontStyle
       value: 0
       objectReference: {fileID: 0}
@@ -289,6 +317,10 @@ PrefabInstance:
       value: 0.6
       objectReference: {fileID: 0}
     - target: {fileID: 1683628391140684333, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
+      propertyPath: barrier
+      value: 
+      objectReference: {fileID: 701083207}
+    - target: {fileID: 1683628391140684333, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: plusSprite
       value: 
       objectReference: {fileID: 21300000, guid: 01939878c4d09fe46838da352f58ab84, type: 3}
@@ -298,11 +330,11 @@ PrefabInstance:
       objectReference: {fileID: 3980992922333341677}
     - target: {fileID: 1683628391140684333, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: firstNumber
-      value: -20
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1683628391140684333, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: thirdNumber
-      value: -200
+      value: -600
       objectReference: {fileID: 0}
     - target: {fileID: 1683628391140684333, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: divideSprite
@@ -310,7 +342,7 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 54f8507f5207ce24eac60f616d07e6f5, type: 3}
     - target: {fileID: 1683628391140684333, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: fourthNumber
-      value: 200
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 1683628391140684333, guid: 2ab09fbee7d04f342a1204ddf2c771da, type: 3}
       propertyPath: multiplySprite
@@ -458,6 +490,7 @@ MonoBehaviour:
   barrierBases: []
   scores: 
   RightDirection: 0
+  tempScoress: 
   ballScript: {fileID: 493157248973410077, guid: af797a67a9ae9054595d8e0d57d3c94f, type: 3}
 --- !u!114 &8778871534859738702 stripped
 MonoBehaviour:
@@ -490,7 +523,6 @@ MonoBehaviour:
   UItext: {fileID: 8778871534859738702}
   mathString: 
   barrier: {fileID: 701083207}
-  answer: 0
   Speed: 0
   maxX: 0
   resetPositionX: 0
@@ -514,7 +546,6 @@ MonoBehaviour:
   UItext: {fileID: 8778871535787411764}
   mathString: 
   barrier: {fileID: 701083207}
-  answer: 0
   Speed: 0
   maxX: 0
   resetPositionX: 0
@@ -549,7 +580,6 @@ MonoBehaviour:
   UItext: {fileID: 8778871536399237918}
   mathString: 
   barrier: {fileID: 701083207}
-  answer: 0
   Speed: 0
   maxX: 0
   resetPositionX: 0
@@ -584,7 +614,6 @@ MonoBehaviour:
   UItext: {fileID: 8778871536254678227}
   mathString: 
   barrier: {fileID: 701083207}
-  answer: 0
   Speed: 0
   maxX: 0
   resetPositionX: 0

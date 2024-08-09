@@ -9,6 +9,7 @@ public class Barrier1 : MonoBehaviour
     public List<BarrierBase> barrierBases = new List<BarrierBase>();
     public List<int> scores = new List<int>();
     public bool RightDirection;
+    public List<int> tempScoress = new List<int>();
 
     [SerializeField]
     private Ball ballScript;

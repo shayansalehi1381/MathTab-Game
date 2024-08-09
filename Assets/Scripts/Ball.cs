@@ -22,6 +22,7 @@ public class Ball : MonoBehaviour
     public GameOver gameOverScreenPrefab;
     [SerializeField]
     private BallAnimation ballAnimation;
+    private BombSpawner bombSpawner;
 
     public void Start()
     {
@@ -29,13 +30,14 @@ public class Ball : MonoBehaviour
         mainCamera = Camera.main;
         soundManager = FindObjectOfType<SoundManager>(); // Find the SoundManager in the scene
         secSoundManager = FindObjectOfType<SoundManager>();
+        bombSpawner = FindObjectOfType<BombSpawner>();
     }
 
     public void Update()
     {
         if (ballAlive)
         {
-            if (Input.GetKeyDown(KeyCode.J))
+            if (Input.GetMouseButtonDown(0))
             {
                 Jump();
             }
@@ -148,8 +150,16 @@ public class Ball : MonoBehaviour
             {
                 Die();
             }
+             if (points >= 500)
+            {
+                bombSpawner.StartSpawning();
+            }
         }
     }
+
+
+
+   
 
     public bool IsBallAlive()
     {
